@@ -18,6 +18,7 @@ public class Main {
         h1.resHab(c,planta,Hab);
         h1.mapHab();
         h1.anularRes(c1);
+        System.out.println("Tras anular reserva: ");
         h1.mapHab();
         FileOutputStream fos = null;
         ObjectOutputStream salida = null;
