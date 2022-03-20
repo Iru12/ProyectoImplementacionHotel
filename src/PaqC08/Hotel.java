@@ -9,50 +9,107 @@ public class Hotel implements Serializable {
         Habitaciones = new Cliente[6][5];
     }
 
-    public void mapHab(){
+    public String mapHab(){
+        String m = "";
         for(int i=0;i<6;i++){
             for(int j=0;j<5;j++){
                 if(Habitaciones[i][j]==null){
-                    System.out.print(" L ");
+                    m = m + " [L] ";
                 }
                 else{
-                    System.out.print(" R ");
+                    m = m + " [R] ";
                 }
             }
-            System.out.println("");
+            m = m + "\n";
         }
+        return m;
     }
 
-    public void resHab(Cliente c, integer p, integer h){
-        for(int i=5;i>=0;i--){
-            for(int j=0;j<5;j++){
-                if(Habitaciones[i][j]==null){
-                    Habitaciones[i][j] = c;
-                    p.setX(i);
-                    h.setX(j+1);
-                    if(p.getX()==5) p.setX(1);
-                    else if(p.getX()==4) p.setX(2);
-                    else if(p.getX()==3) p.setX(3);
-                    else if(p.getX()==2) p.setX(4);
-                    else if(p.getX()==1) p.setX(5);
-                    else if(p.getX()==0) p.setX(6);
-                    System.out.println("Has reservado una habitacion en la planta: " +p.getX()+ " Habitación: " +h.getX());
-                    return;
+    public boolean resHab(Cliente c,int contE, int contB, int contS){
+        int contR = contE + contB + contS;
+        if(contE>0) {
+            for (int i = 5; i >= 0; i--) {
+                for (int j = 0; j < 2; j++) {
+                    if (Habitaciones[i][j] == null) {
+                        Habitaciones[i][j] = c;
+                        contE--;
+                        contR--;
+                    }
+                    if(contE==0) break;
                 }
+                if(contE==0) break;
             }
         }
-        System.out.println("No se ha podido realizar una reserva ya que nuestro hotel esta lleno. Sentimos las molestias.");
+        if(contB>0){
+            for (int i = 5; i >= 0; i--) {
+                for (int j = 2; j < 4; j++) {
+                    if (Habitaciones[i][j] == null) {
+                        Habitaciones[i][j] = c;
+                        contB--;
+                        contR--;
+                    }
+                    if(contB==0) break;
+                }
+                if(contB==0) break;
+            }
+        }
+        if(contS>0){
+            for (int i = 5; i >= 0; i--) {
+                for (int j = 4; j < 5; j++) {
+                    if (Habitaciones[i][j] == null) {
+                        Habitaciones[i][j] = c;
+                        contS--;
+                        contR--;
+                    }
+                    if(contS==0) break;
+                }
+                if(contS==0) break;
+            }
+        }
+        return contR == 0;
     }
 
-    public void anularRes(Cliente c){
-        for(int i=5;i>=0;i--){
-            for(int j=0;j<5;j++){
-                if(Habitaciones[i][j]==c){
-                    Habitaciones[i][j] = null;
-                    return;
+    public boolean anularRes(Cliente c, int contE, int contB, int contS){
+        int contA = contE + contB + contS;
+        if(contE>0) {
+            for (int i = 5; i >= 0; i--) {
+                for (int j = 0; j < 2; j++) {
+                    if (Habitaciones[i][j] == c) {
+                        Habitaciones[i][j] = null;
+                        contE--;
+                        contA--;
+                    }
+                    if(contE==0) break;
                 }
+                if(contE==0) break;
             }
         }
-        System.out.println("No se ha encontrado ninguna reserva con esos datos");
+        if(contB>0) {
+            for (int i = 5; i >= 0; i--) {
+                for (int j = 2; j < 4; j++) {
+                    if (Habitaciones[i][j] == c) {
+                        Habitaciones[i][j] = null;
+                        contB--;
+                        contA--;
+                    }
+                    if(contB==0) break;
+                }
+                if(contB==0) break;
+            }
+        }
+        if(contS>0) {
+            for (int i = 5; i >= 0; i--) {
+                for (int j = 4; j < 5; j++) {
+                    if (Habitaciones[i][j] == c) {
+                        Habitaciones[i][j] = null;
+                        contS--;
+                        contA--;
+                    }
+                    if(contS==0) break;
+                }
+                if(contS==0) break;
+            }
+        }
+        return contA == 0;
     }
 }

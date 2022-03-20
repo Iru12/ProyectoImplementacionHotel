@@ -13,11 +13,8 @@ public class Main {
         Cliente c1 = new Cliente("Paco","Gómez",6,1234,77,15,20);
         Hotel h1 = new Hotel();
         h1.mapHab();
-        h1.resHab(c1,planta,Hab);
-        Cliente c = Cliente.ponDatos();
-        h1.resHab(c,planta,Hab);
-        h1.mapHab();
-        h1.anularRes(c1);
+        h1.resHab(c1,0,0,0);
+        h1.anularRes(c1,0,0,0);
         System.out.println("Tras anular reserva: ");
         h1.mapHab();
         FileOutputStream fos = null;

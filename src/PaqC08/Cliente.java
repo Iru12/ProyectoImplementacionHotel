@@ -2,6 +2,7 @@ package PaqC08;
 
 import java.io.Serializable;
 import java.sql.SQLOutput;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Cliente implements Serializable {
@@ -88,24 +89,11 @@ public class Cliente implements Serializable {
         return telefono;
     }
 
-    public static Cliente ponDatos(){
-        Scanner sc = new Scanner(System.in);
-        Cliente c = new Cliente();
-        System.out.print("Nombre: ");
-        c.setNombre(sc.nextLine());
-        System.out.print("Apellido: ");
-        c.setApellido(sc.nextLine());
-        System.out.print("DNI: ");
-        c.setDNI(sc.nextInt());
-        System.out.print("Telefono: ");
-        c.setTelefono(sc.nextInt());
-        System.out.print("Numero de Tarjeta: ");
-        c.setNumTarjeta(sc.nextInt());
-        System.out.print("Fecha de Entrada: ");
-        c.setFechaE(sc.nextInt());
-        System.out.print("Fecha de Salida: ");
-        c.setFechaS(sc.nextInt());
-        return c;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return DNI == cliente.DNI && telefono == cliente.telefono && numTarjeta == cliente.numTarjeta && fechaE == cliente.fechaE && fechaS == cliente.fechaS && Objects.equals(Nombre, cliente.Nombre) && Objects.equals(Apellido, cliente.Apellido);
     }
 
 }
