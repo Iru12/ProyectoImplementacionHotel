@@ -112,4 +112,15 @@ public class Hotel implements Serializable {
         }
         return contA == 0;
     }
+
+    public Cliente mandarDNI(int DNI){
+        for(int i=0;i<6;i++){
+            for(int j=0;j<5;j++){
+                if(Habitaciones[i][j].getDNI()==DNI){
+                    return Habitaciones[i][j];
+                }
+            }
+        }
+        return null;
+    }
 }
