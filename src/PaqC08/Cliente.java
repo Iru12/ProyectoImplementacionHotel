@@ -13,6 +13,9 @@ public class Cliente implements Serializable {
     private int numTarjeta;
     private int fechaE;
     private int fechaS;
+    private String email;
+    private int direccion;
+
     public Cliente(){
         Nombre = null;
         Apellido = null;
@@ -21,13 +24,17 @@ public class Cliente implements Serializable {
         numTarjeta = 0;
         fechaE = 0;
         fechaS = 0;
+        email = null;
+        direccion = 0;
     }
 
-    public Cliente(String Nombre, String Apellido, int DNI, int telefono, int numTarjeta, int fechaE, int fechaS){
+    public Cliente(String Nombre, String Apellido,int direccion, int DNI, int telefono,String email, int numTarjeta, int fechaE, int fechaS){
         this.Nombre = Nombre;
         this.Apellido = Apellido;
+        this.direccion = direccion;
         this.DNI = DNI;
         this.telefono = telefono;
+        this.email = email;
         this.numTarjeta = numTarjeta;
         this.fechaE = fechaE;
         this.fechaS = fechaS;
@@ -41,8 +48,16 @@ public class Cliente implements Serializable {
         Apellido = apellido;
     }
 
+    public void setDireccion(int direccion) {
+        this.direccion = direccion;
+    }
+
     public void setDNI(int DNI) {
         this.DNI = DNI;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setFechaE(int fechaE) {
@@ -71,6 +86,14 @@ public class Cliente implements Serializable {
 
     public int getDNI() {
         return DNI;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getDireccion() {
+        return direccion;
     }
 
     public int getFechaE() {
